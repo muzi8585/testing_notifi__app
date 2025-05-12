@@ -17,6 +17,12 @@ void main() async {
     ),
   ], debug: true);
 
+  // Check and request notification permission
+  bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+  if (!isAllowed) {
+    await AwesomeNotifications().requestPermissionToSendNotifications();
+  }
+
   await NotificationManager.initializeBackgroundFetch();
 
   runApp(MyApp());
@@ -40,8 +46,17 @@ class NotificationPage extends StatelessWidget {
       appBar: AppBar(title: Text('Notifications')),
       body: Center(
         child: ElevatedButton(
-          onPressed: () {
-            NotificationManager.showInstantNotification();
+          onPressed: () async {
+            bool isAllowed = await AwesomeNotifications().isNotificationAllowed();
+            if (isAllowed) {
+              NotificationManager.showInstantNotification();
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Notification permission not granted. Please enable it in settings.'),
+                ),
+              );
+            }
           },
           child: Text('Show Instant Notification'),
         ),
