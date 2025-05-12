@@ -1,6 +1,6 @@
 {
-    "name": "testing_notifi__app",
-    "short_name": "testing_notifi__app",
+    "name": "flutter_notify_background",
+    "short_name": "flutter_notify_background",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
