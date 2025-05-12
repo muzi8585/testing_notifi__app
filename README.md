@@ -1,4 +1,4 @@
-# testing_notifi__app
+# flutter_notify_background
 
 A new Flutter project.
 
